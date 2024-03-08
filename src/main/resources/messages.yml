@@ -1,0 +1,26 @@
+messaggi:
+  reload: "&2Plugin reloddato."
+  gemme:
+    currGemme: "&dAttualmente hai %gemme% gemme."
+    targetcurrGemme: "&dAttualmente %player% ha %gemme% gemme."
+  addgemme:
+    ricevute: "&aHai ricevuto &2%gemme% &agemme."
+  removegemme:
+    sottratte: "&cHai speso &2%gemme% &cgemme."
+
+
+
+
+errori:
+  no-permission: "&5&lCHAOSMC &fComando sconosciuto."
+  player-not-found: "&cGiocatore non trovato."
+  only-console: "&cComando solo da console."
+  gemme:
+    missing-args: "Corretto utilizzo: /gemme <player>."
+  addgemme:
+    missing-args: "Corretto utilizzo: /addgemme <player> <amount>"
+  removegemme:
+    missing-args: "Corretto utilizzo: /removegemme <player> <amount>"
+  shopgemme:
+    missing-args: "Corretto utilizzo: /shopgemme <player> <item>"
+    not-enough: "&cNon hai abbastanza gemme zio"

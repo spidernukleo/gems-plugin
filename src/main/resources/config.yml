@@ -1,0 +1,7 @@
+shop:
+  #ESEMPIO NON TOCCARE
+  dirt:
+    costo: 50
+    command: "give %player% dirt"
+  #DA QUA METTI I TUOI
+

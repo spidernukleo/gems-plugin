@@ -1,0 +1,25 @@
+name: ChaosGems
+version: '${project.version}'
+main: me.nukleo.chaosgems.ChaosGems
+api-version: '1.20'
+load: STARTUP
+commands:
+  gems:
+    description: Shows how many gems you have
+    usage: /<command>
+  addgemme:
+    description: Adds gems to a player
+    usage: /<command player amount
+    permission: chaosgems.addgemme
+  removegemme:
+    description: Removes gems from a player
+    usage: /<command player amount
+    permission: chaosgems.removegemme
+  gemmereload:
+    description: Reloads plugin
+    usage: /<command>
+    permission: chaosgems.gemmereload
+  shopgemme:
+    description: Fatti i cazzi tuoi
+    usage: /<command> test
+    permission: chaosgems.shopgemme
