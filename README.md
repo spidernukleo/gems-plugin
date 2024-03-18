@@ -11,6 +11,8 @@ This was thought for my old Minecraft server ChaosMC, and was meant to be a used
 
 There's a placeholder too: %playergemme%
 
+You can download the jar here: https://github.com/spidernukleo/gems-plugin/releases/
+
 Feel free to ask anything if you're curious :)
 
 
