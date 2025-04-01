@@ -24,3 +24,4 @@ errori:
   shopgemme:
     missing-args: "Corretto utilizzo: /shopgemme <player> <item>"
     not-enough: "&cNon hai abbastanza gemme zio"
+    full-inventory: "&c&l✘ &cNon hai abbastanza spazio nel tuo inventario."
