@@ -21,35 +21,46 @@ public class ShopGemmeCommand implements CommandExecutor {
         this.playerData=playerData;
         this.messages=messages;
     }
+    
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
         if(command.getName().equalsIgnoreCase("shopgemme")){
             FileConfiguration playerConfig = YamlConfiguration.loadConfiguration(playerData);
-            FileConfiguration messagesConfig=YamlConfiguration.loadConfiguration(messages);
+            FileConfiguration messagesConfig = YamlConfiguration.loadConfiguration(messages);
+            
             if(sender instanceof Player){
-                Player player=(Player) sender;
-                String message=messagesConfig.getString("errori.only-console");
+                Player player = (Player) sender;
+                String message = messagesConfig.getString("errori.only-console");
                 player.sendMessage(metodiUtili.colora(message));
-            }
-            else{
-                if(args.length!=2){
+            } else {
+                if(args.length != 2){
                     String message = messagesConfig.getString("errori.shopgemme.missing-args");
                     System.out.println(metodiUtili.colora(message));
-                }
-                else{
-                    Player target= Bukkit.getPlayer(args[0]);
-                    String shop=args[1];
-                    String uuid=target.getUniqueId().toString();
-                    int currGems = playerConfig.getInt("players."+uuid+".gems",0);
-                    int costo=this.plugin.getConfig().getInt("shop."+shop+".costo");
-                    if(currGems>=costo){
-                        String execute=this.plugin.getConfig().getString("shop."+shop+".command");
-                        String nome=target.getName();
-                        Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "removegemme "+nome+" "+costo);
-                        execute=execute.replace("%player%", nome);
-                        Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), execute);
+                } else {
+                    Player target = Bukkit.getPlayer(args[0]);
+                    if (target == null) {
+                        System.out.println(metodiUtili.colora("Il giocatore specificato non è online."));
+                        return true;
                     }
-                    else{
+                    
+                    String shop = args[1];
+                    String uuid = target.getUniqueId().toString();
+                    int currGems = playerConfig.getInt("players." + uuid + ".gems", 0);
+                    int costo = this.plugin.getConfig().getInt("shop." + shop + ".costo");
+                    
+                    if(currGems >= costo){
+                        if (target.getInventory().firstEmpty() == -1) {
+                            String fullInventoryMessage = messagesConfig.getString("errori.shopgemme.full-inventory", "Inventario pieno");
+                            target.sendMessage(metodiUtili.colora(fullInventoryMessage));
+                            return true;
+                        }
+                        
+                        String execute = this.plugin.getConfig().getString("shop." + shop + ".command");
+                        String nome = target.getName();
+                        Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "removegemme " + nome + " " + costo);
+                        execute = execute.replace("%player%", nome);
+                        Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), execute);
+                    } else {
                         String message = messagesConfig.getString("errori.shopgemme.not-enough");
                         target.sendMessage(metodiUtili.colora(message));
                     }
